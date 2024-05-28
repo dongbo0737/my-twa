@@ -15,7 +15,7 @@ export default class Counter implements Contract {
 
   async sendDeploy(provider: ContractProvider, via: Sender) {
     await provider.internal(via, {
-      value: "0.01", // send 0.01 TON to contract for rent
+      value: "0.001", // send 0.01 TON to contract for rent
       bounce: false
     });
   }
@@ -26,7 +26,7 @@ export default class Counter implements Contract {
       .storeUint(0, 64) // query id
       .endCell();
     await provider.internal(via, {
-      value: "0.002", // send 0.002 TON for gas
+      value: "0.001", // send 0.002 TON for gas
       body: messageBody
     });
   }
