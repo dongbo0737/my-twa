@@ -3,29 +3,25 @@ import { TonConnectButton } from '@tonconnect/ui-react';
 import { useCounterContract } from './hooks/useCounterContract';
 import { useTonConnect } from './hooks/useTonConnect';
 import { useEffect } from 'react';
-import  WebApp  from '@twa-dev/sdk';
+import WebApp from '@twa-dev/sdk';
 
 function App() {
   const { connected } = useTonConnect();
   const { value, address, sendIncrement } = useCounterContract();
+  const sendDataToBot = () => {
+    const data = {
+      message: 'Hello, this is a test message from the web app!',
+      timestamp: new Date().toISOString(),
+    };
 
-  useEffect(() => {
-    const telegram = WebApp;
-// WebApp.showAlert('Hey there!');
- // Function to send data to the bot
- const sendDataToBot = () => {
-  const data = {
-    message: 'Hello, this is a test message from the web app!',
-    timestamp: new Date().toISOString(),
+    // Sending data to bot
+    WebApp.sendData(JSON.stringify(data));
   };
+  useEffect(() => {
 
-  // Sending data to bot
-  telegram.sendData(JSON.stringify(data));
-};
-
-sendDataToBot();
     // 可以访问telegram对象的属性和方法
-    console.log(telegram.initDataUnsafe);
+    console.log(WebApp.initDataUnsafe);
+    console.log(WebApp.version);
   }, []);
 
   return (
@@ -43,7 +39,7 @@ sendDataToBot();
           <div>{value ?? 'Loading...'}</div>
         </div>
 
-        
+
         <a
           className={`Button ${connected ? 'Active' : 'Disabled'}`}
           onClick={() => {
@@ -52,10 +48,15 @@ sendDataToBot();
         >
           Increment
         </a>
-
-        <div>
-          <h1>Hello, Telegram Web App!</h1>
-        </div>
+        <h1>Hello, Telegram Web App!</h1>
+        <a
+          className={`Button 'Active' `}
+          onClick={() => {
+            sendDataToBot();
+          }}
+        >
+          sendDataToBot
+        </a>
       </div>
     </div>
   );
