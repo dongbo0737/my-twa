@@ -12,7 +12,18 @@ function App() {
   useEffect(() => {
     const telegram = WebApp;
 // WebApp.showAlert('Hey there!');
+ // Function to send data to the bot
+ const sendDataToBot = () => {
+  const data = {
+    message: 'Hello, this is a test message from the web app!',
+    timestamp: new Date().toISOString(),
+  };
 
+  // Sending data to bot
+  telegram.sendData(JSON.stringify(data));
+};
+
+sendDataToBot();
     // 可以访问telegram对象的属性和方法
     console.log(telegram.initDataUnsafe);
   }, []);
