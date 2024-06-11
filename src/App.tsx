@@ -2,11 +2,20 @@ import './App.css'
 import { TonConnectButton } from '@tonconnect/ui-react';
 import { useCounterContract } from './hooks/useCounterContract';
 import { useTonConnect } from './hooks/useTonConnect';
-import '@twa-dev/sdk';
+import { useEffect } from 'react';
+import  WebApp  from '@twa-dev/sdk';
 
 function App() {
   const { connected } = useTonConnect();
   const { value, address, sendIncrement } = useCounterContract();
+
+  useEffect(() => {
+    const telegram = WebApp;
+    WebApp.showAlert('Hey there!');
+
+    // 可以访问telegram对象的属性和方法
+    console.log(telegram.initDataUnsafe);
+  }, []);
 
   return (
     <div className='App'>
@@ -32,6 +41,10 @@ function App() {
         >
           Increment
         </a>
+
+        <div>
+          <h1>Hello, Telegram Web App!</h1>
+        </div>
       </div>
     </div>
   );
