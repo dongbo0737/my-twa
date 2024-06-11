@@ -11,7 +11,7 @@ function App() {
 
   useEffect(() => {
     const telegram = WebApp;
-WebApp.showAlert('Hey there!');
+// WebApp.showAlert('Hey there!');
 
     // 可以访问telegram对象的属性和方法
     console.log(telegram.initDataUnsafe);
