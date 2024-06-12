@@ -2,12 +2,14 @@ import './App.css'
 import { TonConnectButton } from '@tonconnect/ui-react';
 import { useCounterContract } from './hooks/useCounterContract';
 import { useTonConnect } from './hooks/useTonConnect';
-import { useEffect } from 'react';
+import { useEffect,useState} from 'react';
 import WebApp from '@twa-dev/sdk';
 
 function App() {
   const { connected } = useTonConnect();
   const { value, address, sendIncrement } = useCounterContract();
+  const [count, setCount] = useState(0)
+
   const sendDataToBot = () => {
     const data = {
       message: 'Hello, this is a test message from the web app!',
@@ -57,6 +59,14 @@ function App() {
         >
           sendDataToBot
         </a>
+
+        <button onClick={() => setCount((count) => count + 1)}>
+          计数是 {count}
+        </button>
+
+        <button onClick={() => WebApp.showAlert(`Hello World! Current count is ${count}`)}>
+            显示警告
+        </button>
       </div>
     </div>
   );
