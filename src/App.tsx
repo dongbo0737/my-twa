@@ -22,8 +22,8 @@ function App() {
   useEffect(() => {
 
     // 可以访问telegram对象的属性和方法
-    console.log(WebApp.initDataUnsafe);
-    console.log(WebApp.version);
+    // console.log(WebApp.initDataUnsafe);
+    // console.log(WebApp.version);
   }, []);
 
   return (
