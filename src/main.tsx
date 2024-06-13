@@ -6,7 +6,7 @@ import WebApp from '@twa-dev/sdk'
 
 // this manifest is used temporarily for development purposes
 const manifestUrl = 'https://dongbo0737.github.io/my-twa/tonconnect-manifest.json';
-// WebApp.ready();
+WebApp.ready();
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <TonConnectUIProvider manifestUrl={manifestUrl}>
